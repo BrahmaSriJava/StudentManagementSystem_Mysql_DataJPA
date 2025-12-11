@@ -10,42 +10,37 @@ import java.util.List;
 @RequestMapping("/StudentDetails")
 public class StudentController {
 
-    StudentService studentService;
+	StudentService studentService;
 
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
+	public StudentController(StudentService studentService) {
+		this.studentService = studentService;
+	}
 
+	@GetMapping("{StudentID}")
+	public Student getStudentDetails(@PathVariable("StudentID") String StudentID) {
+		return studentService.getStudent(StudentID);
+	}
 
-    @GetMapping("{StudentID}")
-    public Student getStudentDetails(@PathVariable("StudentID") String StudentID)
-    {
-        return studentService.getStudent(StudentID);
-    }
-    @GetMapping()
-    public List<Student> getAllStudentDetails()
-    {
-        return studentService.getAllStudent();
-    }
+	@GetMapping()
+	public List<Student> getAllStudentDetails() {
+		return studentService.getAllStudent();
+	}
 
-    @PostMapping
-    public String CreateStudentDetails(@RequestBody Student student)
-    {
-        studentService.createStudent(student);
-        return "Successfully CREATED StudentDetails";
-    }
+	@PostMapping
+	public String CreateStudentDetails(@RequestBody Student student) {
+		studentService.createStudent(student);
+		return "Successfully CREATED StudentDetails";
+	}
 
-    @PutMapping
-    public String UpdateStudentDetails(@RequestBody Student student)
-    {
-        studentService.updateStudent(student);
-        return "Successfully UPDATED StudentDetails";
-    }
+	@PutMapping
+	public String UpdateStudentDetails(@RequestBody Student student) {
+		studentService.updateStudent(student);
+		return "Successfully UPDATED StudentDetails";
+	}
 
-    @DeleteMapping("{StudentID}")
-    public String deleteStudentDetails(@PathVariable("StudentID") String StudentID)
-    {
-        studentService.deleteStudent(StudentID);
-        return "Successfully DELETED StudentDetails";
-    }
+	@DeleteMapping("{StudentID}")
+	public String deleteStudentDetails(@PathVariable("StudentID") String StudentID) {
+		studentService.deleteStudent(StudentID);
+		return "Successfully DELETED StudentDetails";
+	}
 }
